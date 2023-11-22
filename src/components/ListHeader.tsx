@@ -31,17 +31,22 @@ function ListHeader({ listName, getData }: ListHeaderProps) {
         </button>
       </div>
       {showModal && (
-        <Modal mode={"create"} setShowModal={setShowModal} getData={getData} job={{
-          id: "",
-          user_email: "",
-          title: "",
-          status: "",
-          date: "",
-          icon_src: "",
-          icon_id: "",
-          link: undefined,
-          note: undefined
-        }} />
+        <Modal
+          mode={"create"}
+          setShowModal={setShowModal}
+          getData={getData}
+          job={{
+            id: "",
+            user_email: "",
+            title: "",
+            status: "",
+            date: "",
+            icon_src: "",
+            icon_id: "",
+            link: undefined,
+            note: undefined,
+          }}
+        />
       )}
     </div>
   );

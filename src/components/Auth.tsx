@@ -46,7 +46,10 @@ function Auth() {
   return (
     <div className="auth-container">
       <div className="auth-container__box">
-        <form className="auth__form" onSubmit={(e) => handleSubmit(e, isLogIn ? "login" : "signup")}>
+        <form
+          className="auth__form"
+          onSubmit={(e) => handleSubmit(e, isLogIn ? "login" : "signup")}
+        >
           <h2 className="auth__title">{isLogIn ? "Sign In!" : "Sign Up!"}</h2>
           <input
             className="auth__email-input"
@@ -78,7 +81,7 @@ function Auth() {
         </form>
         <div className="auth__options">
           <button
-          className="auth__options-button"
+            className="auth__options-button"
             onClick={() => viewLogin(true)}
             style={{
               backgroundColor: isLogIn
@@ -90,7 +93,7 @@ function Auth() {
             Sign in
           </button>
           <button
-                    className="auth__options-button"
+            className="auth__options-button"
             onClick={() => viewLogin(false)}
             style={{
               backgroundColor: !isLogIn

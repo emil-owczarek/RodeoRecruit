@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Job } from "../types/job";
 
 interface NoteModalProps {
-  job: Job
+  job: Job;
   setShowNoteModal: (show: boolean) => void;
   getData: () => void;
   initialNote?: string;
