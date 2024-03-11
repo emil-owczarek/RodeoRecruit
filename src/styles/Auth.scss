@@ -65,16 +65,40 @@
   }
 
   &__email-input {
-    @include background-with-image("../../public/user.webp");
+    @include background-with-image('../../public/user.webp');
   }
 
   &__password-input {
     &--1 {
-      @include background-with-image("../../public/confirm-password.webp");
+      @include background-with-image('../../public/confirm-password.webp');
     }
 
     &--2 {
-      @include background-with-image("../../public/password.webp");
+      @include background-with-image('../../public/password.webp');
     }
   }
+}
+
+.bubble {
+  position: absolute;
+  width: 10%;
+  height: 11%;
+  left: 57%;
+  top: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 15px;
+  background: #ffd;
+  box-shadow: 0 -0.25vmin, 0 0.125vmin;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.b {
+  border: 0.5vmin solid black;
+}
+
+.r {
+  border-radius: 100%;
 }

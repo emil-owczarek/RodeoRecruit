@@ -46,6 +46,12 @@ function Auth() {
   return (
     <div className="auth-container">
       <div className="auth-container__box">
+        <div className="bubble b r hb">
+          sample account:
+          <br />
+          elon@task.pl
+          <br /> admin1234
+        </div>
         <form
           className="auth__form"
           onSubmit={(e) => handleSubmit(e, isLogIn ? 'login' : 'signup')}
