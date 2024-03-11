@@ -1,8 +1,8 @@
-import { useState } from "react";
-import Modal from "./Modal";
-import NoteModal from "./NoteModel";
-import React from "react";
-import { Job } from "../types/job";
+import { useState } from 'react';
+import Modal from './Modal';
+import NoteModal from './NoteModel';
+import React from 'react';
+import { Job } from '../types/job';
 
 const ListItem = ({ job, getData }: { job: Job; getData: () => void }) => {
   const [showModal, setShowModal] = useState(false);
@@ -10,18 +10,18 @@ const ListItem = ({ job, getData }: { job: Job; getData: () => void }) => {
 
   // colors of status dots
   const statusColorMap: Record<string, string> = {
-    "CV Sent": "green",
-    "Test Task Assigned": "lightgreen",
-    "HR Interview": "Gold",
-    "Technical Interview": "orange",
-    "Offer Received": "CornflowerBlue",
-    "Application Rejected": "Crimson",
-    "Application Closed": "gray",
+    'CV Sent': 'green',
+    'Test Task Assigned': 'lightgreen',
+    'HR Interview': 'Gold',
+    'Technical Interview': 'orange',
+    'Offer Received': 'CornflowerBlue',
+    'Application Rejected': 'Crimson',
+    'Application Closed': 'gray',
   };
 
   // format a link, adding "https://" if missing
   const formatLink = (link: string) => {
-    if (link && (link.startsWith("http://") || link.startsWith("https://"))) {
+    if (link && (link.startsWith('http://') || link.startsWith('https://'))) {
       return link;
     } else if (link) {
       return `https://${link}`;
@@ -34,7 +34,7 @@ const ListItem = ({ job, getData }: { job: Job; getData: () => void }) => {
       const response = await fetch(
         `${process.env.REACT_APP_SERVERURL}/jobs/${job.id}`,
         {
-          method: "DELETE",
+          method: 'DELETE',
         }
       );
 
@@ -55,7 +55,7 @@ const ListItem = ({ job, getData }: { job: Job; getData: () => void }) => {
           alt="job board icon"
         />
         <a
-          href={formatLink(job.link || "")}
+          href={formatLink(job.link || '')}
           className="list-item__job-title"
           target="_blank"
           rel="noopener noreferrer"
@@ -65,7 +65,7 @@ const ListItem = ({ job, getData }: { job: Job; getData: () => void }) => {
         <div className="list-item__job-status">
           <span
             className="list-item__status-dot"
-            style={{ backgroundColor: statusColorMap[job.status] || "black" }}
+            style={{ backgroundColor: statusColorMap[job.status] || 'black' }}
           ></span>
           {job.status}
         </div>
@@ -87,7 +87,7 @@ const ListItem = ({ job, getData }: { job: Job; getData: () => void }) => {
       </div>
       {showModal && (
         <Modal
-          mode={"edit"}
+          mode={'edit'}
           setShowModal={setShowModal}
           getData={getData}
           job={job}

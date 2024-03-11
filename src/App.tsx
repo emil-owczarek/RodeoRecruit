@@ -1,19 +1,19 @@
-import ListHeader from "./components/ListHeader";
-import ListItem from "./components/ListItem";
-import Auth from "./components/Auth";
-import { useEffect, useState, useCallback } from "react";
-import { useCookies } from "react-cookie";
-import React from "react";
-import { Job } from "./types/job";
+import ListHeader from './components/ListHeader';
+import ListItem from './components/ListItem';
+import Auth from './components/Auth';
+import { useEffect, useState, useCallback } from 'react';
+import { useCookies } from 'react-cookie';
+import React from 'react';
+import { Job } from './types/job';
 
 function App() {
   const [cookies] = useCookies();
   const userEmail = cookies.email;
   const authToken = cookies.AuthToken;
   const [jobs, setJobs] = useState<Job[] | null>(null);
-  const [filter, setFilter] = useState("");
-  const [selectedJobBoard, setSelectedJobBoard] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState("");
+  const [filter, setFilter] = useState('');
+  const [selectedJobBoard, setSelectedJobBoard] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('');
 
   const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedStatus(event.target.value);
@@ -32,8 +32,8 @@ function App() {
   const filteredJobs = jobs?.filter((job) => {
     return (
       job.title.toLowerCase().includes(filter.toLowerCase()) &&
-      (selectedJobBoard === "" || job.icon_id === selectedJobBoard) &&
-      (selectedStatus === "" || job.status === selectedStatus)
+      (selectedJobBoard === '' || job.icon_id === selectedJobBoard) &&
+      (selectedStatus === '' || job.status === selectedStatus)
     );
   });
 
@@ -42,8 +42,8 @@ function App() {
   }
 
   const userName = userEmail
-    ? capitalizeFirstLetter(userEmail.split("@")[0])
-    : "";
+    ? capitalizeFirstLetter(userEmail.split('@')[0])
+    : '';
 
   const getData = useCallback(async () => {
     try {
@@ -66,7 +66,7 @@ function App() {
 
   //if cookie not set, show the Auth Modal, otherwise get and show the list of items in the users database via their email.
   return (
-    <div className={`app ${!authToken ? "transparent-background" : ""}`}>
+    <div className={`app ${!authToken ? 'transparent-background' : ''}`}>
       {!authToken && <Auth />}
       {authToken && (
         <>
@@ -74,7 +74,7 @@ function App() {
 
           <input
             className="app__search-input"
-            style={{ display: "block" }}
+            style={{ display: 'block' }}
             type="text"
             placeholder="Search job..."
             value={filter}
@@ -83,11 +83,11 @@ function App() {
 
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "20px",
-              paddingBottom: "20px",
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '20px',
+              paddingBottom: '20px',
             }}
           >
             <label htmlFor="board-select">Choose job board: </label>
@@ -105,8 +105,8 @@ function App() {
               <option value="Other">Other</option>
             </select>
 
-            <label style={{ paddingLeft: "20px" }} htmlFor="status-select">
-              Choose status:{" "}
+            <label style={{ paddingLeft: '20px' }} htmlFor="status-select">
+              Choose status:{' '}
             </label>
             <select
               className="app__select"

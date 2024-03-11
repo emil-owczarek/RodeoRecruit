@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useCookies } from "react-cookie";
-import { icons, statuses } from "./constans";
-import React from "react";
-import { Job } from "../types/job";
-import { icon } from "../types/icon";
+import { useState } from 'react';
+import { useCookies } from 'react-cookie';
+import { icons, statuses } from './constans';
+import React from 'react';
+import { Job } from '../types/job';
+import { icon } from '../types/icon';
 
 interface ModalProps {
   mode: string;
@@ -15,18 +15,18 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ mode, setShowModal, getData, job }) => {
   const [cookies] = useCookies<string>([]);
 
-  const isEditMode = mode === "edit" ? true : false;
+  const isEditMode = mode === 'edit' ? true : false;
 
   const initialIcon = isEditMode
     ? icons.find((icon) => icon.src === job.icon_src) || icons[5]
-    : icons.find((icon) => icon.id === "Other") || icons[5];
+    : icons.find((icon) => icon.id === 'Other') || icons[5];
 
   const [selectedIcon, setSelectedIcon] = useState(initialIcon.id);
   const [data, setData] = useState({
     user_email: isEditMode ? job.user_email : cookies.email,
-    title: isEditMode ? job.title : "",
-    link: isEditMode ? job.link : "",
-    status: isEditMode ? job.status : "CV Sent",
+    title: isEditMode ? job.title : '',
+    link: isEditMode ? job.link : '',
+    status: isEditMode ? job.status : 'CV Sent',
     selectedIcon: initialIcon,
     date: isEditMode ? job.date : new Date(),
   });
@@ -57,8 +57,8 @@ const Modal: React.FC<ModalProps> = ({ mode, setShowModal, getData, job }) => {
 
     try {
       const response = await fetch(`${process.env.REACT_APP_SERVERURL}/jobs`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
       if (response.status === 200) {
@@ -76,8 +76,8 @@ const Modal: React.FC<ModalProps> = ({ mode, setShowModal, getData, job }) => {
       const response = await fetch(
         `${process.env.REACT_APP_SERVERURL}/jobs/${job.id}`,
         {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
         }
       );
@@ -109,7 +109,7 @@ const Modal: React.FC<ModalProps> = ({ mode, setShowModal, getData, job }) => {
             <img
               key={icon.id}
               className={`list-item__icon ${
-                selectedIcon === icon.id ? "selected" : ""
+                selectedIcon === icon.id ? 'selected' : ''
               }`}
               src={icon.src}
               alt={icon.alt}

@@ -1,6 +1,6 @@
-import React from "react";
-import { useState } from "react";
-import { Job } from "../types/job";
+import React from 'react';
+import { useState } from 'react';
+import { Job } from '../types/job';
 
 interface NoteModalProps {
   job: Job;
@@ -15,16 +15,16 @@ const NoteModal: React.FC<NoteModalProps> = ({
   getData,
   initialNote,
 }) => {
-  const [noteText, setNoteText] = useState(initialNote || "");
+  const [noteText, setNoteText] = useState(initialNote || '');
 
   const saveNote = async () => {
     try {
       const response = await fetch(
         `${process.env.REACT_APP_SERVERURL}/jobs/${job.id}/notes`,
         {
-          method: "PUT",
+          method: 'PUT',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({ notes: noteText }),
         }

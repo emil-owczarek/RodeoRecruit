@@ -1,13 +1,13 @@
-import React from "react";
-import { useState } from "react";
-import { useCookies } from "react-cookie";
+import React from 'react';
+import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 
 function Auth() {
   const [, setCookie] = useCookies();
   const [isLogIn, setIsLogin] = useState(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   const viewLogin = (status: boolean) => {
@@ -18,15 +18,15 @@ function Auth() {
   const handleSubmit = async (e: React.FormEvent, endpoint: string) => {
     e.preventDefault();
     if (!isLogIn && password !== confirmPassword) {
-      setError("Make sure passwords match");
+      setError('Make sure passwords match');
       return;
     }
 
     const response = await fetch(
       `${process.env.REACT_APP_SERVERURL}/${endpoint}`,
       {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       }
     );
@@ -36,8 +36,8 @@ function Auth() {
     if (data.detail) {
       setError(data.detail);
     } else {
-      setCookie("email", data.email);
-      setCookie("AuthToken", data.token);
+      setCookie('email', data.email);
+      setCookie('AuthToken', data.token);
 
       window.location.reload();
     }
@@ -48,9 +48,9 @@ function Auth() {
       <div className="auth-container__box">
         <form
           className="auth__form"
-          onSubmit={(e) => handleSubmit(e, isLogIn ? "login" : "signup")}
+          onSubmit={(e) => handleSubmit(e, isLogIn ? 'login' : 'signup')}
         >
-          <h2 className="auth__title">{isLogIn ? "Sign In!" : "Sign Up!"}</h2>
+          <h2 className="auth__title">{isLogIn ? 'Sign In!' : 'Sign Up!'}</h2>
           <input
             className="auth__email-input"
             type="email"
@@ -85,9 +85,9 @@ function Auth() {
             onClick={() => viewLogin(true)}
             style={{
               backgroundColor: isLogIn
-                ? "rgb(188, 188, 188)"
-                : "rgb(255,255,255)",
-              cursor: "pointer",
+                ? 'rgb(188, 188, 188)'
+                : 'rgb(255,255,255)',
+              cursor: 'pointer',
             }}
           >
             Sign in
@@ -97,9 +97,9 @@ function Auth() {
             onClick={() => viewLogin(false)}
             style={{
               backgroundColor: !isLogIn
-                ? "rgb(188, 188, 188)"
-                : "rgb(255,255,255)",
-              cursor: "pointer",
+                ? 'rgb(188, 188, 188)'
+                : 'rgb(255,255,255)',
+              cursor: 'pointer',
             }}
           >
             Sign Up
