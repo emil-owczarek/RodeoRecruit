@@ -9,6 +9,7 @@ function Auth() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const viewLogin = (status: boolean) => {
     setError(null);
@@ -21,7 +22,7 @@ function Auth() {
       setError('Make sure passwords match');
       return;
     }
-
+    setIsLoading(true);
     const response = await fetch(
       `${process.env.REACT_APP_SERVERURL}/${endpoint}`,
       {
@@ -41,10 +42,19 @@ function Auth() {
 
       window.location.reload();
     }
+    setIsLoading(false);
   };
 
   return (
     <div className="auth-container">
+      {isLoading && (
+        <div className="loader-container">
+          <span className="loader"></span>
+          <p className="loader-note">
+            Hosted on a free server, loading may take up to 2 minutes.
+          </p>
+        </div>
+      )}
       <div className="auth-container__box">
         <div className="bubble b r hb">
           sample account:
@@ -83,7 +93,11 @@ function Auth() {
             />
           )}
           {error && <p>{error}</p>}
-          <input type="submit" className="auth__submit-button" />
+          <input
+            type="submit"
+            className="auth__submit-button"
+            disabled={isLoading}
+          />
         </form>
         <div className="auth__options">
           <button
